@@ -22,10 +22,10 @@ parser.add_argument('--only_test', action='store_true', help='Only run test')
 # Data
 parser.add_argument('--metric', default='auc', choices=['micro_f1', 'auc'], help='Metric for picking up best checkpoint')
 parser.add_argument('--dataset', default='none', choices=['none', 'wiki_distant', 'nyt10', 'nyt10m', 'wiki20m'], help='Dataset. If not none, the following args can be ignored')
-parser.add_argument('--train_file', default='./benchmark/CONSD/train/train.txt', type=str, help='Training data file')
-parser.add_argument('--val_file', default='./benchmark/CONSD/val/val.txt', type=str, help='Validation data file')
-parser.add_argument('--test_file', default='./benchmark/CONSD/test/test.txt', type=str, help='Test data file')
-parser.add_argument('--rel2id_file', default='./benchmark/CONSD/rel2id/rel2id.json', type=str, help='Relation to ID file')
+parser.add_argument('--train_file', default='./benchmark/CONSD_rule/train/train.txt', type=str, help='Training data file')
+parser.add_argument('--val_file', default='./benchmark/CONSD_rule/val/val.txt', type=str, help='Validation data file')
+parser.add_argument('--test_file', default='./benchmark/CONSD_rule/test/test.txt', type=str, help='Test data file')
+parser.add_argument('--rel2id_file', default='./benchmark/CONSD_rule/rel2id/rel2id.json', type=str, help='Relation to ID file')
 
 # Bag related
 parser.add_argument('--bag_size', type=int, default=2, help='Fixed bag size. If set to 0, use original bag sizes')
@@ -78,13 +78,9 @@ for arg in vars(args):
 
 rel2id = json.load(open(args.rel2id_file))
 
-# Download glove
-# opennre.download('glove', root_path=root_path)
-# word2id = json.load(open(os.path.join(root_path, 'pretrain/glove/glove.6B.50d_word2id.json')))
-# word2vec = np.load(os.path.join(root_path, 'pretrain/glove/glove.6B.50d_mat.npy'))
+word2id = json.load(open('benchmark/CONSD_rule/vocab.json'))
+word2vec = np.load(('benchmark/CONSD_rule/word2vec.npy'), allow_pickle=True)
 
-word2id = json.load(open('benchmark/CONSD/corpus/glove_cn_50d_vocab.json'))     # benchmark/CONSD/corpus/glove_cn_50d_vocab.json
-word2vec = np.load(('benchmark/CONSD/corpus/glove_cn_50d_vectors.npy'), allow_pickle=True)  # benchmark/CONSD/corpus/glove_cn_50d_vectors.npy
 # Define the sentence encoder
 if args.encoder == 'pcnn':
     sentence_encoder = opennre.encoder.PCNNEncoder(

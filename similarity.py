@@ -193,11 +193,11 @@ model.to(device=device)
 BATCH_SIZE = 512
 
 # 依赖文件
-ontology_path = 'benchmark/CONSD/ontology triples_test.txt'
+ontology_path = 'benchmark/CONSD/CEMO_triples.txt'
 corpus_path = 'benchmark/CONSD/corpus/corpus.txt'
-word2id_path = r'benchmark/CONSD/corpus/glove_cn_50d_vocab.json'
+word2id_path = r'benchmark/CONSD/corpus/vocab.json'
 terms_path = 'benchmark/CONSD/corpus/terms.txt'
-dataset_result_path = r'improved_dataset.txt'
+dataset_result_path = r'dataset.txt'
 triples = ontology2text(ontology_path)
 triples = entity_add_id(triples, word2id_path)
 sentences = read_corpus(corpus_path)

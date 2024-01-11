@@ -15,7 +15,7 @@ def set_seed(seed):
     torch.cuda.manual_seed_all(seed)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--pretrain_path', default='model/bert-base-uncased',
+parser.add_argument('--pretrain_path', default='model/bert-base-chinese',
         help='Pre-trained ckpt path / model name (hugginface)')
 parser.add_argument('--ckpt', default='',
         help='Checkpoint name')
@@ -161,8 +161,8 @@ logging.info('P@300: %.5f' % (result['p@300']))
 
 
 # Save precision/recall points
-np.save('{}_p.npy'.format('result/bert-base-uncased/' + args.result), result['np_prec'])
-np.save('{}_r.npy'.format('result/bert-base-uncased/' + args.result), result['np_rec'])
-np.save('{}_tpr.npy'.format('result/bert-base-uncased/' + args.result), result['np_tpr'])
-np.save('{}_fpr.npy'.format('result/bert-base-uncased/' + args.result), result['np_fpr'])
-json.dump(result['max_micro_f1_each_relation'], open('{}_mmicrof1_rel.json'.format('result/bert-base-uncased/' + args.result), 'w'), ensure_ascii=False)
+np.save('{}_p.npy'.format('result/bert-base-chinese/' + args.result), result['np_prec'])
+np.save('{}_r.npy'.format('result/bert-base-chinese/' + args.result), result['np_rec'])
+np.save('{}_tpr.npy'.format('result/bert-base-chinese/' + args.result), result['np_tpr'])
+np.save('{}_fpr.npy'.format('result/bert-base-chinese/' + args.result), result['np_fpr'])
+json.dump(result['max_micro_f1_each_relation'], open('{}_mmicrof1_rel.json'.format('result/bert-base-chinese/' + args.result), 'w'), ensure_ascii=False)

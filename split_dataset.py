@@ -46,7 +46,7 @@ def split_dataset(input_file, train_file, valid_file, test_file, ratios=(7, 2, 1
 if __name__ == '__main__':
 
     # 拆分数据集
-    input_file = r'improved_dataset.txt'
+    input_file = r'dataset.txt'
     train_file = r'benchmark/CONSD/train/train.txt'
     valid_file = r'benchmark/CONSD/val/val.txt'
     test_file = r'benchmark/CONSD/test/test.txt'
